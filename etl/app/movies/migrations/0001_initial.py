@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     dependencies = []
 
     operations = [
-        migrations.RunSQL('create schema if not exists content;'),
+        migrations.RunSQL("create schema if not exists content;"),
         migrations.CreateModel(
             name="Filmwork",
             fields=[
@@ -39,7 +39,8 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "rating",
-                    models.FloatField(null=True,
+                    models.FloatField(
+                        null=True,
                         validators=[
                             django.core.validators.MinValueValidator(0),
                             django.core.validators.MaxValueValidator(100),
@@ -225,7 +226,13 @@ class Migration(migrations.Migration):
                 fields=["rating", "creation_date"], name="rating_create_date_idx"
             ),
         ),
-        migrations.RunSQL('ALTER TABLE "content".film_work ALTER COLUMN modified DROP NOT NULL;'),
-        migrations.RunSQL('ALTER TABLE "content".genre ALTER COLUMN modified DROP NOT NULL;'),
-        migrations.RunSQL('ALTER TABLE "content".person ALTER COLUMN modified DROP NOT NULL;'),
+        migrations.RunSQL(
+            'ALTER TABLE "content".film_work ALTER COLUMN modified DROP NOT NULL;'
+        ),
+        migrations.RunSQL(
+            'ALTER TABLE "content".genre ALTER COLUMN modified DROP NOT NULL;'
+        ),
+        migrations.RunSQL(
+            'ALTER TABLE "content".person ALTER COLUMN modified DROP NOT NULL;'
+        ),
     ]
