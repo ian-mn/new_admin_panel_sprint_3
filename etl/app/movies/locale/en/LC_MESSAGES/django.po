@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-26 02:03+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\movies_admin\movies\apps.py:8
+msgid "movies"
+msgstr ""
+
+#: .\movies_admin\movies\models.py:33
+msgid "Created on: "
+msgstr "Created on: "
+
+#: .\movies_admin\movies\models.py:43
+msgid "name"
+msgstr "name"
+
+#: .\movies_admin\movies\models.py:44 .\movies_admin\movies\models.py:73
+msgid "description"
+msgstr "description"
+
+#: .\movies_admin\movies\models.py:48 .\movies_admin\movies\models.py:98
+msgid "Genre"
+msgstr "Genre"
+
+#: .\movies_admin\movies\models.py:49
+msgid "Genres"
+msgstr "Genres"
+
+#: .\movies_admin\movies\models.py:56
+msgid "full_name"
+msgstr "full_name"
+
+#: .\movies_admin\movies\models.py:60 .\movies_admin\movies\models.py:121
+msgid "Person"
+msgstr "Person"
+
+#: .\movies_admin\movies\models.py:61
+msgid "Persons"
+msgstr "Persons"
+
+#: .\movies_admin\movies\models.py:69
+msgid "movie"
+msgstr "movie"
+
+#: .\movies_admin\movies\models.py:70
+msgid "tv_show"
+msgstr "tv_show"
+
+#: .\movies_admin\movies\models.py:72
+msgid "title"
+msgstr "title"
+
+#: .\movies_admin\movies\models.py:74
+msgid "creation_date"
+msgstr "creation_date"
+
+#: .\movies_admin\movies\models.py:76
+msgid "rating"
+msgstr "rating"
+
+#: .\movies_admin\movies\models.py:78
+msgid "type"
+msgstr "type"
+
+#: .\movies_admin\movies\models.py:85
+msgid "Filmwork"
+msgstr "Filmwork"
+
+#: .\movies_admin\movies\models.py:86
+msgid "Filmworks"
+msgstr "Filmworks"
+
+#: .\movies_admin\movies\models.py:104
+msgid "GenreFilmWork"
+msgstr "GenreFilmWork"
+
+#: .\movies_admin\movies\models.py:105
+msgid "GenreFilmWorks"
+msgstr "GenreFilmWorks"
+
+#: .\movies_admin\movies\models.py:115
+msgid "actor"
+msgstr "actor"
+
+#: .\movies_admin\movies\models.py:116
+msgid "director"
+msgstr "director"
+
+#: .\movies_admin\movies\models.py:117
+msgid "writer"
+msgstr "writer"
+
+#: .\movies_admin\movies\models.py:124
+msgid "role"
+msgstr "role"
+
+#: .\movies_admin\movies\models.py:129
+msgid "PersonFilmWork"
+msgstr "PersonFilmWork"
+
+#: .\movies_admin\movies\models.py:130
+msgid "PersonFilmWorks"
+msgstr "PersonFilmWorks"
+
+msgid "file"
+msgstr "file"
+
+msgid "certificate"
+msgstr "certificate"

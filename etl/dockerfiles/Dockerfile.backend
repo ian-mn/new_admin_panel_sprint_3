@@ -1,0 +1,23 @@
+FROM python:3.8
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+
+WORKDIR /app
+
+COPY /scripts ./
+RUN chmod +x entrypoint.sh
+
+RUN groupadd -r backend && useradd -d /app -r -g backend backend \ 
+    && chown backend:backend -R /app
+USER backend
+RUN mkdir ./static
+
+COPY /requirements/backend.txt ./
+ENV PATH="/app/.local/bin:${PATH}"
+RUN pip install -r backend.txt
+
+COPY /app/ ./
+
+ENTRYPOINT ["./entrypoint.sh"]
