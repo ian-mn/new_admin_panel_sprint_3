@@ -53,7 +53,7 @@ class JSONStorage(BaseStorage):
         try:
             with open(self.file_path) as f:
                 return json.load(f)
-        except:
+        except IOError:
             return {}
 
     def __save_data(self, data: Dict[str, Any]) -> None:
