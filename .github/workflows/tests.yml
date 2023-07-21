@@ -17,7 +17,7 @@ jobs:
         pg_user: "app"
         pg_pass: "123qwe"
         pg_host: "db"
-        pg_port: 5432"
+        pg_port: 5432
         django_secret_key: "secret"
         debug: "True"
         DJANGO_SUPERUSER_USERNAME: "admin"
