@@ -22,7 +22,7 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - backend
+      - db
     networks:
     - movies
 
@@ -66,6 +66,57 @@ services:
       retries: 5
     networks:
       - movies
+
+  elasticsearch:
+    image: elasticsearch:8.6.2
+    restart: always
+    ports:
+      - "${elastic_port}:${elastic_port}"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+      cluster.routing.allocation.disk.threshold_enabled: false
+    healthcheck:
+      test: curl -s http://${elastic_host}:${elastic_port} >/dev/null || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 50
+    networks:
+      - movies
+
+  redis:
+    image: redis:latest
+    ports:
+      - "${redis_port}"
+    command: redis-server --requirepass ${redis_pass} --appendonly yes
+    networks:
+      - movies
+
+  etl:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.etl
+    env_file:
+      - ./.env
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - movies
+
+  newman:
+    image: postman/newman
+    command:
+      run etl.json -k 
+      -r cli,json 
+      --reporter-json-export="reports/etl.json"
+    volumes:
+      - ./postman:/etc/newman
+    depends_on:
+      - etl
+    network_mode: 
+      "host"
+    
 
 networks:
   movies:
