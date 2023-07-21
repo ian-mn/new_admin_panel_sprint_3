@@ -1,0 +1,12 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    name: Hello world
+  
+    steps:
+    - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.4.1
+      with:
+        compose-file: "./etl/docker/docker-compose.yml"
