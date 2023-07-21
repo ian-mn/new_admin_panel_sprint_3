@@ -7,6 +7,11 @@ import django.db.models.deletion
 from django.db import migrations, models
 
 
+class DateTimeWithoutTZField(models.DateTimeField):
+    def db_type(self, connection):
+        return "timestamp"
+
+
 class Migration(migrations.Migration):
     initial = True
 
@@ -26,8 +31,8 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("created", models.DateTimeField(auto_now_add=True)),
-                ("modified", models.DateTimeField(auto_now=True)),
+                ("created", DateTimeWithoutTZField(auto_now_add=True)),
+                ("modified", DateTimeWithoutTZField(auto_now=True)),
                 ("title", models.CharField(max_length=255, verbose_name="title")),
                 (
                     "description",
@@ -74,8 +79,8 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("created", models.DateTimeField(auto_now_add=True)),
-                ("modified", models.DateTimeField(auto_now=True)),
+                ("created", DateTimeWithoutTZField(auto_now_add=True)),
+                ("modified", DateTimeWithoutTZField(auto_now=True)),
                 ("name", models.CharField(max_length=255, verbose_name="name")),
                 (
                     "description",
@@ -100,8 +105,8 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("created", models.DateTimeField(auto_now_add=True)),
-                ("modified", models.DateTimeField(auto_now=True)),
+                ("created", DateTimeWithoutTZField(auto_now_add=True)),
+                ("modified", DateTimeWithoutTZField(auto_now=True)),
                 (
                     "full_name",
                     models.CharField(max_length=255, verbose_name="full_name"),
@@ -136,7 +141,7 @@ class Migration(migrations.Migration):
                         verbose_name="role",
                     ),
                 ),
-                ("created", models.DateTimeField(auto_now_add=True)),
+                ("created", DateTimeWithoutTZField(auto_now_add=True)),
                 (
                     "film_work",
                     models.ForeignKey(
@@ -171,7 +176,7 @@ class Migration(migrations.Migration):
                         serialize=False,
                     ),
                 ),
-                ("created", models.DateTimeField(auto_now_add=True)),
+                ("created", DateTimeWithoutTZField(auto_now_add=True)),
                 (
                     "film_work",
                     models.ForeignKey(
