@@ -15,7 +15,7 @@ class Row:
 
     @classmethod
     def from_dict(cls, env: dict):
-        """Generate Row from dictionary, adds created column.
+        """Generate Row from dictionary, adds created and modified column.
 
         Args:
             env (dict): Original dictionary
@@ -23,10 +23,11 @@ class Row:
         Returns:
             _type_: Row
         """
-        filtered_dict = {
-            k: v for k, v in env.items() if k in inspect.signature(cls).parameters
-        }
+        params = inspect.signature(cls).parameters
+        filtered_dict = {k: v for k, v in env.items() if k in params}
         filtered_dict["created"] = "now()"
+        if "modified" in params.keys():
+            filtered_dict["modified"] = "now()"
         return cls(**filtered_dict)
 
 
@@ -37,6 +38,7 @@ class FilmWork(Row):
     creation_date: Optional[date]
     rating: Optional[float]
     type: str
+    modified: str
     source_name = "film_work"
     target_name = "content.film_work"
 
@@ -45,6 +47,7 @@ class FilmWork(Row):
 class Genre(Row):
     name: str
     description: Optional[str]
+    modified: str
     source_name = "genre"
     target_name = "content.genre"
 
@@ -52,6 +55,7 @@ class Genre(Row):
 @dataclass(frozen=True)
 class Person(Row):
     full_name: str
+    modified: str
     source_name = "person"
     target_name = "content.person"
 
