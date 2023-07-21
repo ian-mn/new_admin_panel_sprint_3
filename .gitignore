@@ -6,3 +6,6 @@
 
 # Env file
 .env
+
+# Newman reports
+**/reports/
