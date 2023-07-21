@@ -26,6 +26,6 @@ jobs:
         redis_host: "redis"
         redis_port: 6379
         redis_pass: "test"
-        elastic_host: 9200
-        elastic_port: "elasticsearch"
+        elastic_host: "elasticsearch"
+        elastic_port: 9200
         use_redis_storage: True
