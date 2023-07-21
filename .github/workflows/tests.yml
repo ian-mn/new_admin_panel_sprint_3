@@ -7,25 +7,29 @@ jobs:
   
     steps:
     - uses: actions/checkout@v3
+
+    - name: Rename file 
+        run: mv .env.sample .env
+
     - uses: isbang/compose-action@v1.4.1
       with:
         compose-file: "./etl/docker-compose.tests.yml"
-      env:
-        sqlite_path: "db.sqlite"
-        batch_size: 100"
-        pg_db: "movies_database"
-        pg_user: "app"
-        pg_pass: "123qwe"
-        pg_host: "db"
-        pg_port: 5432
-        django_secret_key: "secret"
-        debug: "True"
-        DJANGO_SUPERUSER_USERNAME: "admin"
-        DJANGO_SUPERUSER_PASSWORD: "123qwe"
-        DJANGO_SUPERUSER_EMAIL: "test@test.com"
-        redis_host: "redis"
-        redis_port: 6379
-        redis_pass: "test"
-        elastic_host: "elasticsearch"
-        elastic_port: 9200
-        use_redis_storage: True
+      # env:
+      #   sqlite_path: "db.sqlite"
+      #   batch_size: 100"
+      #   pg_db: "movies_database"
+      #   pg_user: "app"
+      #   pg_pass: "123qwe"
+      #   pg_host: "db"
+      #   pg_port: 5432
+      #   django_secret_key: "secret"
+      #   debug: "True"
+      #   DJANGO_SUPERUSER_USERNAME: "admin"
+      #   DJANGO_SUPERUSER_PASSWORD: "123qwe"
+      #   DJANGO_SUPERUSER_EMAIL: "test@test.com"
+      #   redis_host: "redis"
+      #   redis_port: 6379
+      #   redis_pass: "test"
+      #   elastic_host: "elasticsearch"
+      #   elastic_port: 9200
+      #   use_redis_storage: True
