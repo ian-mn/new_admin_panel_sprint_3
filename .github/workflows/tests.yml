@@ -18,5 +18,8 @@ jobs:
     - name: Up
       run: docker-compose -f ./etl/docker-compose.tests.yml up -d
 
+    - name: ps
+      run: docker ps 
+
     - name: Attach to Newman
       run: docker attach newman-1 
