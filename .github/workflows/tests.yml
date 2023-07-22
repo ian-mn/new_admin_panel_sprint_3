@@ -7,13 +7,12 @@ jobs:
   
     steps:
 
-    - name: ls
-      run: ls
+    - uses: actions/checkout@v3
 
     - name: Rename .env file 
       run: mv ./etl/.env.sample ./etl/.env
 
-    - uses: actions/checkout@v3
+    
     - uses: isbang/compose-action@v1.4.1
       with:
         compose-file: "./etl/docker-compose.tests.yml"
