@@ -13,7 +13,10 @@ jobs:
       run: mv ./etl/.env.sample ./etl/.env
 
     - name: Build
-      run: docker-compose -f ./etl/docker-compose.tests.yml build && docker-compose -f ./etl/docker-compose.tests.yml up -d
+      run: docker-compose -f ./etl/docker-compose.tests.yml build
+
+    - name: Up
+      run: docker-compose -f ./etl/docker-compose.tests.yml up
 
     - name: Attach to Newman
       run: docker attach etl-newman-1 
