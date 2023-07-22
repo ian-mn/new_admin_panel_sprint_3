@@ -7,8 +7,8 @@ jobs:
   
     steps:
 
-  - name: ls
-    run: ls
+    - name: ls
+      run: ls
 
     - name: Rename .env file 
       run: mv ./etl/.env.sample ./etl/.env
