@@ -6,12 +6,13 @@ jobs:
     name: Hello world
   
     steps:
-    
+
+  - name: ls
+    run: ls
 
     - name: Rename .env file 
       run: mv ./etl/.env.sample ./etl/.env
 
-    
     - uses: actions/checkout@v3
     - uses: isbang/compose-action@v1.4.1
       with:
