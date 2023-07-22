@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Rename .env file 
+     - name: Rename .env file 
       run: mv ./etl/.env.sample ./etl/.env
 
     - name: 
@@ -17,4 +17,4 @@ jobs:
         compose-file: "./etl/docker-compose.tests.yml"
 
     - name:
-    run: docker attach etl-newman-1 
+      run: docker attach etl-newman-1 
