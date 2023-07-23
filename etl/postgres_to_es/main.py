@@ -1,15 +1,7 @@
-import logging
-
 from apscheduler.schedulers.blocking import BlockingScheduler
+from settings import get_settings
 
 from etl import ETL
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(process)d-%(levelname)s-%(message)s",
-    force=True,
-)
-
 
 sched = BlockingScheduler()
 
@@ -22,4 +14,6 @@ def start_elt():
 
 if __name__ == "__main__":
     start_elt()
-    sched.start()
+
+    if get_settings().automatic_updates:
+        sched.start()

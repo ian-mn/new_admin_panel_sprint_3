@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     es: ESSettings = ESSettings()
     batch_size: int = Field(None, env="batch_size")
     use_redis_storage: bool = Field(True, env="use_redis_storage")
+    automatic_updates: bool = Field(True, env="automatic_updates")
 
 
 @lru_cache

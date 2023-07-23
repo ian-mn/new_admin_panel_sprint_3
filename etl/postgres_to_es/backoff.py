@@ -1,10 +1,9 @@
 import inspect
-import logging
 import math
 from functools import wraps
 from time import sleep
 
-logging.basicConfig(level=logging.INFO)
+from logger import logger
 
 
 def backoff(start_sleep_time=0.1, factor=2, border_sleep_time=100):
@@ -26,7 +25,7 @@ def backoff(start_sleep_time=0.1, factor=2, border_sleep_time=100):
                         yield i
                     break
                 except Exception as e:
-                    logging.error(e)
+                    logger.error(e)
                     backoff_sleep(start_sleep_time, factor, border_sleep_time, n)
                     n += 1
 
@@ -37,7 +36,7 @@ def backoff(start_sleep_time=0.1, factor=2, border_sleep_time=100):
                 try:
                     return func(*args, **kwargs)
                 except Exception as e:
-                    logging.error(e)
+                    logger.error(e)
                     backoff_sleep(start_sleep_time, factor, border_sleep_time, n)
                     n += 1
 
@@ -57,5 +56,5 @@ def backoff_sleep(start_sleep_time, factor, border_sleep_time, n) -> None:
     t = start_sleep_time * math.pow(factor, n)
     if t >= border_sleep_time:
         t = border_sleep_time
-    logging.error(f"Backoff for {round(t)} seconds")
+    logger.error(f"Backoff for {round(t)} seconds")
     sleep(t)

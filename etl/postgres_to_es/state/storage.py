@@ -4,6 +4,7 @@ import logging
 from typing import Any, Dict
 
 from backoff import backoff
+from logger import logger
 from redis import Redis
 from settings import get_settings
 
@@ -27,12 +28,12 @@ class RedisStorage(BaseStorage):
 
     @backoff()
     def get(self, key: str) -> Any:
-        logging.info(f"Getting Redis {key}")
+        logger.info(f"Getting Redis {key}")
         return self.redis_adapter.get(key)
 
     @backoff()
     def set(self, key: str, value: Any) -> None:
-        logging.info(f"Setting Redis {key} to {value}")
+        logger.info(f"Setting Redis {key} to {value}")
         self.redis_adapter.set(key, value)
 
 

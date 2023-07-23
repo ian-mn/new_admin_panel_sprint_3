@@ -22,7 +22,8 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
     - movies
 
@@ -113,7 +114,8 @@ services:
     volumes:
       - ./postman:/etc/newman
     depends_on:
-      - etl
+      etl:
+        condition: service_completed_successfully
     network_mode: 
       "host"
     
