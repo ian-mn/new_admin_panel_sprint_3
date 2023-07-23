@@ -37,8 +37,6 @@ class ETL:
         etl_state = self.state.get_etl_state()
         params = {"etl_state": etl_state}
 
-        logger.critical(etl_state)
-
         for batch in self.extract.iterbatches(params):
             bulk_query = transform(batch)
             self.load.bulk(bulk_query)
