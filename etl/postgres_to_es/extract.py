@@ -2,7 +2,7 @@ import logging
 from contextlib import contextmanager
 
 import psycopg2
-from backoff import backoff
+from backoff import backoff_generator
 from logger import logger
 from psycopg2.extras import DictCursor
 from settings import get_settings
@@ -23,7 +23,7 @@ class Extract:
         yield conn
         conn.close()
 
-    @backoff()
+    @backoff_generator()
     def iterbatches(self, params: dict):
         """Yields batch from specified table and update date.
 
