@@ -1,7 +1,7 @@
 # Проектное задание: ETL
 ![Black](https://img.shields.io/badge/code%20style-black-black)
+![Tests](https://github.com/ian-mn/new_admin_panel_sprint_3/actions/workflows/tests.yml/badge.svg?branch=main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2a3910f5a464aba50670/maintainability)](https://codeclimate.com/github/ian-mn/new_admin_panel_sprint_3/maintainability)
-
 ## Задание спринта
 
 Написать отказоустойчивый перенос данных из Postgres в Elasticsearch
