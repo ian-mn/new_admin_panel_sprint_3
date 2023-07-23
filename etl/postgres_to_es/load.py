@@ -14,7 +14,7 @@ class Load:
     def __init__(self) -> None:
         es_settings = get_settings().es
         url = f"http://{es_settings.host}:{es_settings.port}"
-        self.es = Elasticsearch(url)
+        self.es = Elasticsearch(url, max_retries=0, retry_on_timeout=0)
         self.__load_index()
 
     @backoff()
