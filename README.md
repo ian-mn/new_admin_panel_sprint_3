@@ -25,4 +25,11 @@
 - При потере соединения с PostgreSQL, Redis или ElasticSearch процесс ждет, пока сервисы восстановятся с помощью exponential backoff;
 - Тесты Postman перенесены в `docker-compose.tests.yml`, где их выполняет Newman.
 
-
+## Запуск
+1. Перейти в папку `cd etl`
+2. Заполнить файл `.env` по примеру `.env.sample`
+`use_redis_storage=True` - использовать хранилище Redis, иначе - JSON-файл
+`automatic_updates=True` - запускать процесс ETL каждую минуту, иначе - запустить один раз (для тестов должна быть False, иначе контейнер ETL не завершится)
+3. `docker-compose build`
+4. `docker-compose up`
+5. Для тестов запустить `docker-compose -f docker-compose.tests.yml build && docker-compose -f docker-compose.tests.yml up`
