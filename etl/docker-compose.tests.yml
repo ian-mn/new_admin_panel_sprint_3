@@ -22,7 +22,8 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
     - movies
 
@@ -73,9 +74,9 @@ services:
     ports:
       - "${elastic_port}:${elastic_port}"
     environment:
-      discovery.type: single-node
-      xpack.security.enabled: false
-      cluster.routing.allocation.disk.threshold_enabled: false
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - cluster.routing.allocation.disk.threshold_enabled=false
     healthcheck:
       test: curl -s http://${elastic_host}:${elastic_port} >/dev/null || exit 1
       interval: 1s
@@ -113,7 +114,8 @@ services:
     volumes:
       - ./postman:/etc/newman
     depends_on:
-      - etl
+      etl:
+        condition: service_completed_successfully
     network_mode: 
       "host"
     

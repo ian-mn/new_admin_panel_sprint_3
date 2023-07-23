@@ -3,6 +3,7 @@ from contextlib import contextmanager
 
 import psycopg2
 from backoff import backoff
+from logger import logger
 from psycopg2.extras import DictCursor
 from settings import get_settings
 
@@ -30,13 +31,13 @@ class Extract:
             params (dict): Dictionary with table name and table state.
         """
         with self.__conn_context() as conn:
-            logging.info(f"Extracting from PostgreSQL with params: {params}")
+            logger.info(f"Extracting from PostgreSQL with params: {params}")
             curs = conn.cursor()
             query = self.__parametrize_query(self.QUERY_PATH, params)
             curs.execute(query)
             while True:
                 rows = curs.fetchmany(self.batch_size)
-                logging.info(f"Extracted rows: {rows}")
+                logger.info(f"Extracted {len(rows)} rows.")
                 if not rows:
                     break
                 yield rows

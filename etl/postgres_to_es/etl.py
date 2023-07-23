@@ -8,10 +8,8 @@ from backoff import backoff
 from elasticsearch import Elasticsearch, helpers
 from extract import Extract
 from load import Load
-from psycopg2.extras import DictCursor
-from settings import get_settings
+from logger import logger
 from state.state import State
-
 from transform import transform
 
 QUERY_PATH = "/postgres_to_es/updates_query.sql"
@@ -19,7 +17,7 @@ QUERY_PATH = "/postgres_to_es/updates_query.sql"
 
 class ETL:
     def __init__(self) -> None:
-        logging.info("Setting connections to PostgreSQL, Redis and Elasticsearch")
+        logger.info("Setting connections to PostgreSQL, Redis and Elasticsearch")
         self.extract = Extract()
         self.state = State()
         self.load = Load()
@@ -27,7 +25,7 @@ class ETL:
     def try_start(self) -> None:
         """Starts ETL process if another process is not running."""
         if self.state.is_running():
-            logging.warning("Another process is running")
+            logger.warning("Another process is running")
         else:
             self.state.set_running()
             self.__start()
@@ -38,6 +36,9 @@ class ETL:
         transforms it to bulk query, loads into Elasticsearch."""
         etl_state = self.state.get_etl_state()
         params = {"etl_state": etl_state}
+
+        logger.critical(etl_state)
+
         for batch in self.extract.iterbatches(params):
             bulk_query = transform(batch)
             self.load.bulk(bulk_query)

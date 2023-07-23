@@ -1,11 +1,5 @@
-import abc
-import json
-import logging
 from datetime import datetime, timezone
-from typing import Any, Dict
 
-from backoff import backoff
-from redis import Redis
 from settings import get_settings
 from state.storage import JSONStorage, RedisStorage
 
@@ -13,7 +7,7 @@ from state.storage import JSONStorage, RedisStorage
 class State:
     """Provides methods to get and set key, value pair of string and datetime converted to string."""
 
-    DEFAULT_VALUE = datetime(2023, 5, 1, 0, 0, 0, 0, timezone.utc)
+    DEFAULT_VALUE = datetime(2022, 1, 1, 0, 0, 0, 0, timezone.utc)
     IS_RUNNING_KEY = "is_running"
     ETL_STATE_KEY = "etl_state"
 

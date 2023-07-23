@@ -3,6 +3,7 @@ from typing import Dict, List
 
 from backoff import backoff
 from elasticsearch import Elasticsearch, helpers
+from logger import logger
 from queries.index import MAPPINGS, SETTINGS
 from settings import get_settings
 
@@ -20,7 +21,7 @@ class Load:
     def __load_index(self) -> None:
         """Loads index into Elasticsearch."""
         if not self.es.indices.exists(index=self.INDEX):
-            logging.info(f"Creating ES index '{self.INDEX}'")
+            logger.info(f"Creating ES index '{self.INDEX}'")
             self.es.indices.create(
                 index=self.INDEX,
                 mappings=MAPPINGS,
@@ -36,5 +37,5 @@ class Load:
         Args:
             actions (List[Dict]): Bulk query.
         """
-        logging.info("Bulk loading to Elasticsearch.")
+        logger.info("Bulk loading to Elasticsearch.")
         helpers.bulk(self.es, actions)
