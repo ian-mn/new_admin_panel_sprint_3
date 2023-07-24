@@ -1,11 +1,3 @@
-import json
-import logging
-from contextlib import contextmanager
-from typing import List
-
-import psycopg2
-from backoff import backoff
-from elasticsearch import Elasticsearch, helpers
 from extract import Extract
 from load import Load
 from logger import logger

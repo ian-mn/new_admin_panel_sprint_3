@@ -1,4 +1,3 @@
-import logging
 from typing import Dict, List
 
 from backoff import backoff
@@ -28,7 +27,7 @@ class Load:
                 settings=SETTINGS,
             )
         else:
-            logging.info(f"ES index '{self.INDEX}' already exists.")
+            logger.info(f"ES index '{self.INDEX}' already exists.")
 
     @backoff()
     def bulk(self, actions: List[Dict]) -> None:
