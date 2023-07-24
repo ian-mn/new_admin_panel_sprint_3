@@ -34,11 +34,8 @@ class Extract:
             curs = conn.cursor()
             query = self.__parametrize_query(self.QUERY_PATH, params)
             curs.execute(query)
-            while True:
-                rows = curs.fetchmany(self.batch_size)
+            while rows := curs.fetchmany(self.batch_size):
                 logger.info(f"Extracted {len(rows)} rows.")
-                if not rows:
-                    break
                 yield rows
 
     def __parametrize_query(self, query_path: str, params: dict) -> str:
