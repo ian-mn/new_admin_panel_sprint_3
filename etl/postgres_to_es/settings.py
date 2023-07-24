@@ -1,26 +1,25 @@
 from functools import lru_cache
-from typing import Optional
 
 from pydantic import BaseSettings, Field
 
 
 class RedisSettings(BaseSettings):
-    host: Optional[str] = Field(None, env="redis_host")
-    port: Optional[str] = Field(None, env="redis_port")
-    password: Optional[str] = Field(None, env="redis_pass")
+    host: str | None = Field(None, env="redis_host")
+    port: str | None = Field(None, env="redis_port")
+    password: str | None = Field(None, env="redis_pass")
 
 
 class PGSettings(BaseSettings):
-    host: Optional[str] = Field(None, env="pg_host")
-    port: Optional[str] = Field(None, env="pg_port")
-    password: Optional[str] = Field(None, env="pg_pass")
-    user: Optional[str] = Field(None, env="pg_user")
-    dbname: Optional[str] = Field(None, env="pg_db")
+    host: str | None = Field(None, env="pg_host")
+    port: str | None = Field(None, env="pg_port")
+    password: str | None = Field(None, env="pg_pass")
+    user: str | None = Field(None, env="pg_user")
+    dbname: str | None = Field(None, env="pg_db")
 
 
 class ESSettings(BaseSettings):
-    host: Optional[str] = Field(None, env="elastic_host")
-    port: Optional[str] = Field(None, env="elastic_port")
+    host: str | None = Field(None, env="elastic_host")
+    port: str | None = Field(None, env="elastic_port")
 
 
 class Settings(BaseSettings):

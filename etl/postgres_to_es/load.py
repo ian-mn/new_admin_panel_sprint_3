@@ -1,5 +1,3 @@
-from typing import Dict, List
-
 from backoff import backoff
 from elasticsearch import Elasticsearch, helpers
 from logger import logger
@@ -30,11 +28,11 @@ class Load:
             logger.info(f"ES index '{self.INDEX}' already exists.")
 
     @backoff()
-    def bulk(self, actions: List[Dict]) -> None:
+    def bulk(self, actions: list[dict]) -> None:
         """Bulk loads actions into Elasticsearch.
 
         Args:
-            actions (List[Dict]): Bulk query.
+            actions (list[dict]): Bulk query.
         """
         logger.info("Bulk loading to Elasticsearch.")
         helpers.bulk(self.es, actions)

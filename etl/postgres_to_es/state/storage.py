@@ -1,6 +1,6 @@
 import abc
 import json
-from typing import Any, Dict
+from typing import Any
 
 from backoff import backoff
 from logger import logger
@@ -49,13 +49,13 @@ class JSONStorage(BaseStorage):
         data[key] = value
         self.__save_data(data)
 
-    def __read_data(self) -> Dict[str, Any]:
+    def __read_data(self) -> dict[str, Any]:
         try:
             with open(self.file_path) as f:
                 return json.load(f)
         except IOError:
             return {}
 
-    def __save_data(self, data: Dict[str, Any]) -> None:
+    def __save_data(self, data: dict[str, Any]) -> None:
         with open(self.file_path, "w") as f:
             json.dump(data, f)

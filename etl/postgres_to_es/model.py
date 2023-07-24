@@ -1,4 +1,3 @@
-from typing import List, Optional
 from uuid import UUID
 
 from pydantic import BaseModel, validator
@@ -11,15 +10,15 @@ class Person(BaseModel):
 
 class Movie(BaseModel):
     id: UUID
-    imdb_rating: Optional[float]
-    genre: List[str]
+    imdb_rating: float | None
+    genre: list[str]
     title: str
-    description: Optional[str]
-    director: List[str]
-    actors_names: List[str]
-    writers_names: List[str]
-    actors: Optional[List[Person]]
-    writers: Optional[List[Person]]
+    description: str | None
+    director: list[str]
+    actors_names: list[str]
+    writers_names: list[str]
+    actors: list[Person] | None
+    writers: list[Person] | None
 
     @validator("director", "actors_names", "writers_names", pre=True)
     def null_is_empty_list(cls, v, values, **kwargs):
