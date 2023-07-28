@@ -1,7 +1,7 @@
 pytest==7.3.2
 psycopg2==2.9.6
 pydantic==1.10.8
-django==4.2.2
+django==4.2.3
 black==23.3.0
 python-dotenv==1.0.0
 django-split-settings==1.2.0
